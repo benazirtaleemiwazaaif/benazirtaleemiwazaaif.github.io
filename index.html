@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benazir Taleemi Wazaif Eligibility Checker & Stipend Calculator</title>
+  <meta name="description" content="Check if your child qualifies for Benazir Taleemi Wazaif and calculate the quarterly stipend for each child by class level and gender. Free, quick and easy.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Benazir Taleemi Wazaif Eligibility Checker & Stipend Calculator">
+  <meta property="og:description" content="Answer 4 questions to check eligibility, then calculate quarterly stipends for all your children.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&family=Noto+Nastaliq+Urdu:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Benazir Taleemi Wazaif Eligibility Checker & Stipend Calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "publisher": { "@type": "Organization", "name": "Benazir Taleemi Wazaif Info", "url": "https://benazirtaleemiwazaaif.pk/" }
+  }
+  </script>
+</head>
+<body>
+
+  <div class="notice">Independent information tool. Not affiliated with BISP or the Government of Pakistan.</div>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="logo" href="#top"><span class="logo-mark">🎓</span> Taleemi Wazaif Tools</a>
+      <nav class="nav">
+        <a href="#eligibility">Eligibility</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://benazirtaleemiwazaaif.pk/">Full Guide</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Does your child qualify for Benazir Taleemi Wazaif?</h1>
+          <p class="urdu" lang="ur" dir="rtl">اپنے بچوں کی تعلیمی وظیفہ اہلیت اور رقم معلوم کریں</p>
+          <p class="lede">Answer four quick questions to check eligibility, then add your children to see how much stipend the family can receive every quarter.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#eligibility">Check eligibility</a>
+            <a class="btn outline" href="#calculator">Calculate stipend</a>
+          </div>
+        </div>
+        <aside class="rate-card" aria-label="Quarterly stipend rates">
+          <h2 class="rate-title">Quarterly stipend per child</h2>
+          <table>
+            <thead><tr><th>Level</th><th>Boys</th><th>Girls</th></tr></thead>
+            <tbody>
+              <tr><td>Primary</td><td>Rs 2,000</td><td>Rs 2,500</td></tr>
+              <tr><td>Secondary</td><td>Rs 3,000</td><td>Rs 3,500</td></tr>
+              <tr><td>Higher secondary</td><td>Rs 4,000</td><td>Rs 4,500</td></tr>
+            </tbody>
+          </table>
+          <p class="rate-note">Plus a one-time Rs 3,000 graduation bonus for girls. The stipend helps cover books, fees and transport. For the latest updates, see <a href="https://benazirtaleemiwazaaif.pk/">benazirtaleemiwazaaif.pk</a>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tool" id="eligibility">
+      <div class="wrap narrow">
+        <h2>Eligibility checker</h2>
+        <p class="sub">Answer all four questions and press Check.</p>
+
+        <div class="q">
+          <p class="q-text">Is the child's mother an active Benazir Kafaalat beneficiary?</p>
+          <div class="seg" data-q="kafaalat">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">No</button>
+            <button type="button" data-v="unsure">Not sure</button>
+          </div>
+        </div>
+
+        <div class="q">
+          <p class="q-text">Which level is the child studying at?</p>
+          <div class="seg" data-q="level">
+            <button type="button" data-v="primary">Primary</button>
+            <button type="button" data-v="secondary">Secondary</button>
+            <button type="button" data-v="higher">Higher secondary</button>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="q-text" for="age">Child's age (years)</label>
+          <input id="age" type="number" min="3" max="25" inputmode="numeric" placeholder="e.g. 9">
+        </div>
+
+        <div class="q">
+          <p class="q-text">Is the child enrolled in school and attending regularly (around 70% or more)?</p>
+          <div class="seg" data-q="school">
+            <button type="button" data-v="yes">Yes</button>
+            <button type="button" data-v="no">No</button>
+          </div>
+        </div>
+
+        <button id="checkBtn" class="btn primary wide" type="button">Check eligibility</button>
+        <div id="result" class="result" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
+    <section class="tool alt" id="calculator">
+      <div class="wrap narrow">
+        <h2>Stipend calculator</h2>
+        <p class="sub">Add each school-going child to see the family's total.</p>
+
+        <div id="kids" class="kids"></div>
+        <button id="addKid" class="btn outline" type="button">+ Add a child</button>
+
+        <div class="totals">
+          <div><span class="t-label">Every quarter</span><span id="qTotal" class="t-value">Rs 0</span></div>
+          <div><span class="t-label">Per year (4 quarters)</span><span id="yTotal" class="t-value">Rs 0</span></div>
+        </div>
+        <p id="bonusNote" class="bonus" hidden></p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap narrow">
+        <h2>What is Benazir Taleemi Wazaif?</h2>
+        <p>Benazir Taleemi Wazaif is a conditional cash transfer programme run by the Benazir Income Support Programme (BISP). It pays a quarterly education stipend for school-going children of families already receiving Benazir Kafaalat, with the aim of improving enrolment and reducing dropouts.</p>
+        <p>Girls receive Rs 500 more than boys at every level to encourage female education. The money is paid to the mother's account, and payments continue only while the child keeps attending school.</p>
+
+        <h2>How to register</h2>
+        <ol class="steps">
+          <li>Make sure the mother is an active Kafaalat beneficiary.</li>
+          <li>Visit the nearest BISP tehsil office with the mother's CNIC and the child's B-Form.</li>
+          <li>Get the admission or registration form verified by the child's school.</li>
+          <li>Submit the verified form back at the BISP office and keep the slip.</li>
+        </ol>
+        <p>For the complete step-by-step process, payment schedule and 8171 status check, read the detailed <a href="https://benazirtaleemiwazaaif.pk/">Benazir Taleemi Wazaif guide</a>.</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap narrow">
+        <h2>Common questions</h2>
+        <details>
+          <summary>Who is eligible for Benazir Taleemi Wazaif?</summary>
+          <p>Children whose mother is an active Benazir Kafaalat beneficiary and who are enrolled in school. BISP's age bands are 4 to 12 for primary, 8 to 18 for secondary and 13 to 22 for higher secondary.</p>
+        </details>
+        <details>
+          <summary>How often is the stipend paid?</summary>
+          <p>Once every quarter, meaning four times a year, into the mother's account.</p>
+        </details>
+        <details>
+          <summary>What happens if attendance is low?</summary>
+          <p>The stipend is linked to school attendance. Reports put the requirement at 70%, and a quarter with low attendance may not be paid.</p>
+        </details>
+        <details>
+          <summary>Do I have to pay anyone to register?</summary>
+          <p>No. Registration is free. Never give money or your CNIC details to agents who promise faster payment.</p>
+        </details>
+        <details>
+          <summary>Where can I check payment status?</summary>
+          <p>Send the mother's CNIC number to 8171 or use the BISP 8171 web portal. Step-by-step help is available on <a href="https://benazirtaleemiwazaaif.pk/">benazirtaleemiwazaaif.pk</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap cta-inner">
+        <p class="cta-text">Need the full registration and payment guide?</p>
+        <a class="btn light" href="https://benazirtaleemiwazaaif.pk/">Read the complete guide</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 Taleemi Wazaif Tools. Information by <a href="https://benazirtaleemiwazaaif.pk/">Benazir Taleemi Wazaif</a>.</p>
+      <p>Always confirm official details with BISP (helpline 0800-26477).</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
